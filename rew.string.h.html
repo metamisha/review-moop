@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>String.h</title>
+</head>
+<style>
+    .code-block {
+        background-color: rgba(173, 172, 255, 0.04);
+    }
+
+    .code {
+        color: black !important;
+        font-family: 'Lucida Console', monospace;
+
+    }
+
+    span {
+        color: green
+    }
+
+    .border-warning span {
+        color: #ffc107;
+    }
+
+    .border-danger span {
+        color: red;
+    }
+</style>
+<body>
+<div class="container-fluid border-bottom ">
+    <dd>Рецензія <code>String.h</code></dd>
+    <dd>Автор рецензії - Гордін Михайло</dd>
+    <dd>Автор <code>String.h</code> - Накитняк Вадим</dd>
+</div>
+<div class="container mt-1 border mb-5">
+    <div class="row ">
+        <div class="col-12 border-bottom mt-1 mb-1">
+            <p>Клас <code>String</code> повинен обробляти рядки символів типу char.</p>
+            <p>Для створення та видалення екземплярів класу Вадим використав Конструктори та Деструктор</p>
+            <div class="col-12 border border-success p-3 rounded code-block">
+                <div>
+                    <p> Конструктори:</p>
+                    <code class="code">
+                        String(<span></span>);<br>
+                        String(<span>const char</span>);<br>
+                        String(<span>const char*</span>);<br>
+                        String(<span>const string&</span>);<br>
+                        String(<span>const String& s, const unsigned multiplayer = 1</span>);
+                    </code>
+                </div>
+            </div>
+            <div class="col-12 border border-success p-3 rounded mt-1 mb-1 code-block">
+                <div class="code">
+                    <p> Деструктор:</p>
+                    <code class="code">
+                        ~String();
+                    </code>
+                </div>
+            </div>
+            <p>Ці конструктори <code>String</code> вміють обробляти різні типи аргументів.</p>
+
+        </div>
+        <div class="col-12 border-bottom mt-1 mb-1">
+            <p>Файл явно поділений на приватну та публічну частину, що може бути плюсом.</p>
+        </div>
+        <div class="col-12 border-bottom mt-1 mb-1">
+            <p> Вадим додав методи <code>length()</code>, <code>empty()</code>, <code>clear()</code> для обробки довжини
+                рядка.</p>
+            <div class="col-12 border border-success p-3 rounded mt-1 mb-1 code-block">
+                <div>
+                    <code class="code">
+                        <span>size_t</span> length() <span>const</span>; <br>
+                        <span>bool</span> empty() <span>const</span>; <br>
+                        <span>void</span> clear(); <br>
+                    </code>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12 border-bottom mt-1 mb-1">
+            <p> Слід зазначити, що Вадим забув додати оператор <code>+=</code> для <code>String</code> типу <code>const
+                char</code>, хоча створив для цього типу конутруктор.</p>
+            <div class="col-12 border border-warning p-3 rounded mt-1 mb-1 code-block">
+                <div>
+                    <code class="code">
+                        <span>String&</span> operator+=(<span>const char*</span>); <br>
+                        <span>String&</span> operator+=(<span>const String&</span>); <br>
+                        <span>String&</span> operator+=(<span>const string&</span>);<br>
+                    </code>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12 border-bottom mt-1 mb-1">
+            <p> Бульові оператори
+                <code>==</code>,<code>!=</code>,<code><</code>,<code><=</code>,<code>></code>,<code>>=</code> слід було
+                винести в утиліти.</p>
+            <div class="col-12 border border-danger p-3 rounded mt-1 mb-1 code-block">
+                <div>
+                    <code class="code">
+                        <span> bool</span> operator == (<span>const</span> String&) <span>const</span>;<br>
+                        <span> bool</span> operator != (<span>const</span> String&) <span>const</span>;<br>
+                        <span> bool</span> operator < (<span>const</span> String&) <span>const</span>;<br>
+                        <span> bool</span> operator <= (<span>const</span> String&) <span>const</span>;<br>
+                        <span> bool</span> operator > (<span>const</span> String&) <span>const</span>;<br>
+                        <span> bool</span> operator >= (<span>const</span> String&) <span>const</span>;<br>
+                    </code>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12 border-bottom mt-1 mb-1">
+            <p> Вадим додав утиліти <code>ostream&</code>, для виведення.</p>
+            <div class="col-12 border border-success p-3 rounded mt-1 mb-1 code-block">
+                <div>
+                    <code class="code">
+                        <span>ostream</span> operator<<(<span>ostream</span>, <span>const</span> String&);<br>
+                        <span>ostream</span> operator<<(<span>ostream</span>, <span>const</span>
+                        String::BadString&);<br>
+                        <span>ostream</span> operator<<(<span>ostream</span>, <span>const</span> String::BadIndex&);<br>
+                    </code>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12 border-bottom mt-1 mb-1">
+            <p>Плюсом є наявність обробки можливих помилок.</p>
+
+        </div>
+        <div class="col-12 mt-1 mb-1">
+            Файл <code>String.h</code> у реалізації Вадима мені сподобався, є декілька помилок, але вони некритичні і роботі програми не
+            будуть заважати.
+        </div>
+    </div>
+
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</html>
